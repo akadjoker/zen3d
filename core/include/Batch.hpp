@@ -2,8 +2,6 @@
 #include <vector>
 #include "Config.hpp"
 #include "Math.hpp"
-#include "Color.hpp"
-#include "Opengl.hpp"
 
 class Color;
 class Texture;
@@ -199,14 +197,14 @@ private:
     u8 colorr, colorg, colorb, colora;
 
     // GL objects
-    GLuint programId;
-    GLuint vaoId;
-    GLuint vboId;
-    GLuint eboId;
-    GLuint whiteTextureId;
-    GLint  uMvpLocation;
-    GLint  uTextureLocation;
-    GLint  aPosLocation;
-    GLint  aUvLocation;
-    GLint  aColorLocation;
+    uint32_t programId;
+    uint32_t vaoId;
+    uint32_t vboId;
+    uint32_t eboId;
+    uint32_t whiteTextureId;
+    int32_t  uMvpLocation;
+    int32_t  uTextureLocation;
+    int32_t  aPosLocation;
+    int32_t  aUvLocation;
+    int32_t  aColorLocation;
 };

@@ -4,7 +4,6 @@
 #include <SDL2/SDL.h>
 #include <string>
 
-// Forward-declare so Device.hpp doesn't pull all of imgui.h into every TU
 struct ImGuiContext;
 class Pixmap;
 
@@ -50,17 +49,8 @@ public:
     const char* GetGifRecordingPath() const;
     int GetGifRecordingFPS() const;
     int GetGifRecordingFrameCount() const;
-    bool BeginFrameSequenceRecording(const char* directory = nullptr, const char* extension = "png", int fps = 30);
-    bool EndFrameSequenceRecording();
-    bool IsFrameSequenceRecording() const;
-    const char* GetFrameSequenceDirectory() const;
-    const char* GetFrameSequenceExtension() const;
-    int GetFrameSequenceFPS() const;
-    int GetFrameSequenceFrameCount() const;
-    std::string GetLastFrameSequenceDirectory() const;
-    std::string GetLastFrameSequenceExtension() const;
-    int GetLastFrameSequenceFPS() const;
-    bool ExportLastFrameSequenceToVideo(const char* outputFilename = nullptr) const;
+    
+    
 
     SDL_Window*   GetWindow() const { return m_window; }
     SDL_GLContext  GetGLContext() const { return m_context; }
@@ -68,9 +58,7 @@ public:
     // ── ImGui integration ────────────────────────────────────────
     // Call once after Create().  glsl_version e.g. "#version 300 es"
     void ImGuiInit(const char *glsl_version = "#version 300 es");
-    // Call at the start of render — opens a new ImGui frame
     void ImGuiBegin();
-    // Call at the end of render — renders ImGui draw data
     void ImGuiEnd();
     // Called automatically by Close(), but safe to call manually
     void ImGuiShutdown();
@@ -81,7 +69,7 @@ public:
 
 private:
     struct GifRecordingState;
-    struct FrameSequenceRecordingState;
+ 
  
     int m_width;
     int m_height;    
@@ -98,13 +86,11 @@ private:
     double m_target;
     bool m_vsyncEnabled;
     bool m_ready;
-    Sint32 m_closekey;
+    int32_t m_closekey;
     bool m_imguiReady = false;
     GifRecordingState* m_gifRecording;
-    FrameSequenceRecordingState* m_frameSequenceRecording;
-    std::string m_lastFrameSequenceDirectory;
-    std::string m_lastFrameSequenceExtension;
-    int m_lastFrameSequenceFPS = 0;
+ 
+ 
 
     Device();
     ~Device();
@@ -115,12 +101,7 @@ private:
     Device& operator=(Device&&) = delete;
 
     void CaptureGifFrame();
-    void CaptureFrameSequenceFrame();
-    std::string BuildDefaultFrameSequenceDirectory(const char* extension) const;
-    std::string BuildDefaultVideoPath(const std::string& frameDirectory) const;
-    bool ExportFrameSequenceToVideo(const std::string& directory,
-                                    const std::string& extension,
-                                    int fps,
-                                    const char* outputFilename) const;
+ 
 
 };
+            

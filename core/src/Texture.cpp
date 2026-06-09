@@ -595,30 +595,23 @@ Texture2D *TextureManager::createFromPixmap(const char *name, const Pixmap &pixm
 TextureManager::TextureManager()
 {
     LogInfo("TextureManager: Create");
-    m_texturePath = "assets/textures";
+    m_texturePath = "../assets/textures";
     m_defaultTexture = nullptr;
 }
 
 TextureManager::~TextureManager()
 {
     LogInfo("TextureManager: Destroy");
-
-    Clear();
+ 
 }
 
 void TextureManager::Clear()
 {
-    if (m_defaultTexture)
-    {
-        delete m_defaultTexture;
-        m_defaultTexture = nullptr;
-    }
+    m_defaultTexture = nullptr;
 
     m_loadedTextures.clear();
 
-    // clear (m_textures);
 
-    // m_textures.clear();
 
     for (auto it = m_textures.begin(); it != m_textures.end(); it++)
     {
@@ -654,7 +647,7 @@ void TextureManager::Initialize()
 
         Pixmap image(64, 64, 4, checker_data);
 
-        createFromPixmap("white", image);
+       m_defaultTexture=createFromPixmap("white", image);
     }
 
     {

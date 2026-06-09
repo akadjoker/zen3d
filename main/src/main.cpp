@@ -6,6 +6,12 @@
 #include "RenderState.hpp"
 #include "Utils.hpp"
 
+extern "C" const char *__lsan_default_suppressions()
+{
+    return "leak:libSDL2\n"
+           "leak:SDL_DBus\n";
+}
+
 namespace
 {
 Mat4 BuildScreenMatrix(int width, int height)
@@ -118,11 +124,21 @@ int main()
             iconFont.SetColor(255, 100, 100, 255);
             // Heart (f004), User (f007), Cog (f013), Shopping Cart (f07a), Save (f0c7)
             iconFont.Print(u8"\uf004  \uf007  \uf013  \uf07a  \uf0c7", 74.0f, 260.0f);
+
+            iconFont.SetColor(255, 215, 0, 255); // Amarelo "Gold" para os smileys
+            // Smile (f118), Meh (f11a), Frown (f119)
+            iconFont.Print(u8"Smileys: \uf118  \uf11a  \uf119", 74.0f, 300.0f);
         }
+
+
 
         batch.Render();
         device.Flip();
     }
+
+    font.Release();
+    ttfFont.Release();
+    iconFont.Release();
 
     device.Close();
     return 0;

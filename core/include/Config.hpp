@@ -79,7 +79,7 @@ typedef double    f64;    // 64-bit float (IEEE 754)
 #define DEBUG
 
 #if defined(DEBUG)
-	#include <assert.h>
+	#include <SDL2/SDL_assert.h>
 	#define DEBUG_BREAK_IF( _CONDITION_ ) SDL_assert( !(_CONDITION_) );
 #else
 	#define DEBUG_BREAK_IF( _CONDITION_ )

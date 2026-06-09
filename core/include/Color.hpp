@@ -2,7 +2,6 @@
 
 
 #include "Config.hpp"
-#include "Math.hpp"
  
 
 enum PixelFormat
@@ -27,10 +26,10 @@ public:
 	{
 		float invT = 1.0f - t;
 		return Color(
-			r * invT + rhs.r * t,
-			g * invT + rhs.g * t,
-			b * invT + rhs.b * t,
-			a * invT + rhs.a * t
+			(u8)(r * invT + rhs.r * t),
+			(u8)(g * invT + rhs.g * t),
+			(u8)(b * invT + rhs.b * t),
+			(u8)(a * invT + rhs.a * t)
 			);
 	}
 
@@ -51,10 +50,6 @@ public:
  
 	u32 ToUInt() const
 	{
-		unsigned r = (unsigned) Clamp(((int)(this->r * 255.0f)),0,255);
-		unsigned g = (unsigned) Clamp(((int)(this->g * 255.0f)),0,255);
-		unsigned b = (unsigned) Clamp(((int)(this->b * 255.0f)),0,255);
-		unsigned a = (unsigned) Clamp(((int)(this->a * 255.0f)),0,255);
 		return (a << 24) | (b << 16) | (g << 8) | r;
 	}
 

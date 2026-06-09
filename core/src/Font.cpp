@@ -1151,7 +1151,7 @@ bool Font::LoadFromPixmap(const Pixmap& pixmap, int charWidth, int charHeight,
 }
 
 // ========================================
-// LoadTTF - TrueType Font (requires stb_truetype)
+// LoadTTF - TrueType Font  
 // ========================================
 
  
@@ -1257,7 +1257,7 @@ bool Font::LoadTTFRangeFromMemory(const unsigned char* data, int dataSize,
     
  
     Pixmap atlas(atlasSize, atlasSize, 2);
-    atlas.Fill(255, 255, 255, 0);  
+    //atlas.Fill(255, 255, 255, 0);  
     
     int x = 1, y = 1;
     int rowHeight = 0;
