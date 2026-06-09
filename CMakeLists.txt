@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.10)
+cmake_policy(SET CMP0072 NEW)
+
+project(zen3d)
+
+# Use GLES3 platform headers in imgui backend — no glad dependency inside imgui.
+# Works on desktop (glad loads the symbols first), Android, Raspberry Pi, Emscripten.
+add_compile_definitions(IMGUI_IMPL_OPENGL_ES3)
+
+add_subdirectory(vendor/imgui)
+add_subdirectory(vendor/poly2tri)
+add_subdirectory(core)
+add_subdirectory(main)
+
+ 
+ 
